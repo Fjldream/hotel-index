@@ -1,0 +1,1 @@
+const URL ='http://localhost:81/hotel-admin/public/index.php';const SUCCESS = 200;const FAIL = 404;const IMGURL = 'http://localhost:81';export {    URL,SUCCESS,FAIL,IMGURL}
