@@ -115,7 +115,7 @@
                     </router-link>
                 </section>
                 <section class="tabs tabs-con-con">
-                    <van-tabs>
+                    <van-tabs v-model="active">
                         <van-tab title="详情">
                             <div  v-html="homestay.hdetail" :class="{'desc':true,'detailmore':detailismore}"></div>
                             <div class="more">
@@ -430,7 +430,7 @@
                                 </div>
                             </div>
                         </van-tab>
-                    </van-tabs>
+                    </van-tabs >
                 </section>
             </div>
         </main>
@@ -594,6 +594,11 @@
                 end:'',
                 startDay:'',
                 endDay:'',
+                //是否被收藏
+                isconlleted:false,
+                //active
+                active:0,
+
             }
         },
         mounted() {
@@ -601,6 +606,9 @@
             this.hid = this.$route.query.hid;
             this.initHomestay(this.hid);
             //初始化时间
+
+            //
+            this.isConllected();
         },
         computed: {},
         methods: {
@@ -656,6 +664,10 @@
             },
             pageback(){
                 this.$router.back();
+            },
+            isConllected(){
+                this.isconlleted = this.$store.getters.isConllection(this.hid);
+
             }
 
         },
@@ -664,6 +676,9 @@
             '$route':function (a) {
                 this.hid = a.query.hid;
                 this.initHomestay(this.hid);
+                this.active = 0;
+                this.isConllected();
+                window.scrollTo(0,0);
             }
         }
     }

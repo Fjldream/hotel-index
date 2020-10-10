@@ -63,9 +63,24 @@ const routes = [
     name:'Detail',
     component:detail,
     meta:{
-      title:'经典详情'
+      title:'景点详情'
+    }
+  },
+  { path:'/reg',
+    name:'Reg',
+    component:()=>import('../views/login/Reg'),
+    meta:{
+      title:'注册'
+    }
+  },
+  { path:'/login',
+    name:'Login',
+    component:()=>import('../views/login/Login'),
+    meta:{
+      title:'登录'
     }
   }
+
 ]
 
 const router = new VueRouter({
