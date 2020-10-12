@@ -1,16 +1,19 @@
+//es6 自动采用严格模式
+'use strict';
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import index from "../views/index/index";
 import detail from "../views/detail/Detail"
 import DetailH from "../views/detail/DetailH";
 import list from "../views/list/list";
+import store from "../store";
 //router 是个插件 use
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'index',
+    name: 'Index',
     component: index,
     meta:{
       title:'首页'
@@ -34,7 +37,7 @@ const routes = [
     name: 'DetailH',
     component:DetailH,
     meta:{
-      title:'民宿详情'
+      title:'民宿详情',auth:true
     }
   },
   {
@@ -63,7 +66,7 @@ const routes = [
     name:'Detail',
     component:detail,
     meta:{
-      title:'景点详情'
+      title:'景点详情',auth:true
     }
   },
   { path:'/reg',
@@ -79,6 +82,15 @@ const routes = [
     meta:{
       title:'登录'
     }
+  },
+  {
+    path: '/center',
+    name:"Center",
+    component:()=>import('../views/center/Center'),
+    meta: {
+      title: '个人中心',
+      auth: true
+    }
   }
 
 ]
@@ -86,5 +98,24 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+//1.全局的前置守卫 本页的
+//2.路由独享的守卫 写在路由路径那块
+//3.组件内守卫路由  组件内直接定义以下路由导航守卫：beforeRouteEnter (to, from, next)
+router.beforeEach((to, from, next) => {
+  //这里的this 不会指向vue的实例 严格模式下 this 指向未定义
+  from;
+  let{title,auth} = to.meta;
+  document.title = title || '一家民宿';
+  if (auth){
+    let token = store.state.token;
+    if(token){
+      next();
+    }else{
+      next({name:'Login',query:{redirect:to.name}});
+    }
+  }else{
+    next();
+  }
 
+})
 export default router

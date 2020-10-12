@@ -886,7 +886,7 @@ footer {
     font-family: PingFang SC Bold;
 }
 
-.contact a, .collect a {
+.detailh-collect{
     color: rgba(0, 0, 0, .6);
     display: block;
 }
@@ -931,5 +931,16 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.h-collect{
+    margin-bottom: 0.08rem;
+    text-align: center;
+}
+.h-collect-color{
+    color: #EB666B;
+}
+.icon-ziyuan:before{
+    font-size: 0.40rem;
+
 }
 /* 底部结束 */

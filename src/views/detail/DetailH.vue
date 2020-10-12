@@ -438,16 +438,16 @@
         <!-- 底部开始 -->
         <footer v-show="show">
             <div class="contact float-left">
-                <router-link to="/">
+                <div>
                     <van-image :src="icon.contact"/>
-                    <div>联系房东</div>
-                </router-link>
+                    <div class="detailh-collect">联系房东</div>
+                </div>
             </div>
             <div class="collect float-left">
-                <router-link to="/">
-                    <van-image :src="icon.favorites"/>
-                    <div>1.1k收藏</div>
-                </router-link>
+                <div @click="selectcollected">
+                    <div class="iconfont icon-ziyuan h-collect" :class="{'h-collect-color':isconlleted}"></div>
+                    <div class="detailh-collect">{{collectText}}</div>
+                </div>
             </div>
             <div class="price float-left">
                 <van-image :src="icon.price"/>
@@ -610,7 +610,15 @@
             //
             this.isConllected();
         },
-        computed: {},
+        computed: {
+            collectText(){
+                if(this.isconlleted){
+                    return '已收藏';
+                }else{
+                    return '收藏';
+                }
+            }
+        },
         methods: {
             initHomestay(hid) {
                 apiDetail(hid).then(res => {
@@ -638,10 +646,6 @@
                     console.log(error);
                 });
             },
-            initTime(){
-                console.log(this.$store.state.indexSearch);
-
-            },
             detailIsMore() {
                 if (this.detailismore === false) {
                     this.detailismore = true;
@@ -667,7 +671,12 @@
             },
             isConllected(){
                 this.isconlleted = this.$store.getters.isConllection(this.hid);
-
+            },
+            selectcollected(){
+                if(this.isconlleted === true) {
+                    this.$store.commit('resetcollection', this.hid);
+                    this.isconlleted = !this.isconlleted;
+                }
             }
 
         },
