@@ -80,7 +80,8 @@ const routes = [
     name:'Login',
     component:()=>import('../views/login/Login'),
     meta:{
-      title:'登录'
+      title:'登录',
+      auth:false
     }
   },
   {
@@ -89,6 +90,15 @@ const routes = [
     component:()=>import('../views/center/Center'),
     meta: {
       title: '个人中心',
+      auth: true
+    }
+  },
+  {
+    path: '/collection',
+    name:"Collection",
+    component:()=>import('../views/collection/Collection'),
+    meta: {
+      title: '收藏管理',
       auth: true
     }
   }

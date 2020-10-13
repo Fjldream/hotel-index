@@ -69,4 +69,7 @@ html{
   /* .component-fade-leave-active for below version 2.1.8 */ {
   opacity: 0;
 }
+.van-toast{
+  background-color: rgba(235,102,107,0.8) !important;
+}
 </style>

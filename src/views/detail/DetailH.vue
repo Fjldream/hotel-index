@@ -91,7 +91,7 @@
                         <div class="right-arrow">
                             <van-image :src="icon.arrow_right" @click="show = true"/>
                         </div>
-                        <van-calendar v-model="show" :show-confirm="false" type="range" @confirm="onConfirm" />
+                        <van-calendar v-model="show" :show-confirm="false" type="range" color="#EB666B" @confirm="onConfirm" />
                     </div>
                 </section>
                 <section class="discount arrow-box clearfix">
@@ -370,7 +370,7 @@
                             </div>
                             <div class="check-in-notice">
                                 <div class="tab-title">入住<span class="color-mark">须知</span></div>
-                                <div class="notie-container notice-item notice-des" v-html="homestay.hnotice">
+                                <div class="notie-container notice-item notice-des-g" v-html="homestay.hnotice">
 <!--                                    <div class="notice-item">-->
 <!--                                        <span class="notice-title">入住时间</span>-->
 <!--                                        <span class="notice-des">15:00后入住 12:00前退房</span>-->
@@ -521,7 +521,8 @@
     import like from '@/assets/img/like.png';
     import {apiDetail} from "../../http/api";
     import {IMGURL, SUCCESS} from "../../lib/base";
-    import {Notify} from 'vant';
+    import {Notify,Toast} from 'vant';
+    import 'vant/lib/toast/style';
 
     export default {
         props: {},
@@ -676,6 +677,11 @@
                 if(this.isconlleted === true) {
                     this.$store.commit('resetcollection', this.hid);
                     this.isconlleted = !this.isconlleted;
+                    Toast('取消收藏成功');
+                }else{
+                    this.$store.commit('insertcllection',this.hid);
+                    this.isconlleted = !this.isconlleted;
+                    Toast('收藏成功');
                 }
             }
 
@@ -713,4 +719,5 @@
     }
 
     @import '../../style/detail.css';
+
 </style>

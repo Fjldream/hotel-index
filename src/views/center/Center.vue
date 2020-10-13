@@ -3,7 +3,7 @@
         <!-- 头部开始 -->
         <div class="header">
             <div class="cen-avatar">
-                <img :src="person.avatar" v-if="person.avatar" alt="">
+                <img v-if="person.avatar" :src="person.avatar" alt="">
                 <router-link v-else to="/login" ><img src="http://localhost:81/hotel-admin/public/static/avatar.png" alt="默认"></router-link>
             </div>
             <div class="uname">
@@ -78,11 +78,11 @@
                     <span>设置</span>
                     <span class="jump-to bottom-jump-to"><i class="iconfont icon-youjiantou"></i></span>
                 </li>
-                <li>
+                <router-link to="/collection" tag="li">
                     <span class="prefix"></span>
                     <span>收藏管理</span>
                     <span class="jump-to bottom-jump-to"><i class="iconfont icon-youjiantou"></i></span>
-                </li>
+                </router-link>
                 <li>
                     <span class="prefix"></span>
                     <span>积分商城</span>
@@ -99,9 +99,9 @@
         <div class="btn">
             <span @click="exitLogin">退出登录</span>
         </div>
-        <section class="nav-bar">
-<!--            <nav-bar :index="3"></nav-bar>-->
-        </section>
+        <div class="footer">
+            <tabbar :index="4"></tabbar>
+        </div>
     </div>
 </template>
 
@@ -109,11 +109,7 @@
 
 // 图标
 import viplogo from '@/assets/center/viplogo.png';
-// import go from '@/assets/center/go.png';
-// import info from '@/assets/center/info.png';
-// import circle from '@/assets/center/circle.png';
- import done from '@/assets/center/done.png';
-// import goon from '@/assets/center/goon.png';
+import done from '@/assets/center/done.png';
 import live from '@/assets/center/live.png';
 import pay from '@/assets/center/pay.png';
 import refund from '@/assets/center/refund.png';
@@ -121,7 +117,7 @@ import {apiPerson} from "../../http/api";
 import {IMGURL, SUCCESS} from "../../lib/base";
 
 // 底部导航
-// import navbar from '../nav/Nav';
+import tabbar from "../tabbar/tabbar";
 
 export default {
     name: 'center',
@@ -160,6 +156,7 @@ export default {
     },
     components: {
         // NavBar: navbar
+        tabbar
     }
 }
 </script>

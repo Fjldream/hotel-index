@@ -772,7 +772,13 @@ main {
     display: inline-block;
     line-height: .48rem;
 }
-
+.notice-des-g{
+    font-size: .26rem;
+    font-family: PingFang SC Bold;
+    color: rgba(0, 0, 0, .4);
+    display: inline-block;
+    line-height: .48rem;
+}
 .notice-des a {
     display: block;
     position: relative;

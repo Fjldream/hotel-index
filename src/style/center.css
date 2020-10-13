@@ -303,3 +303,12 @@ body,ul,li{
 a:active, a:link, a:visited {
     color: #333;
 }
+/*底部tabbar*/
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 99999;
+    box-shadow: 0px 1px 30px 0px rgba(242, 242, 242, 0.75);
+}
